@@ -118,7 +118,7 @@ footer{color:var(--muted);font-size:13px;text-align:center}
 .chips input:checked+span{background:var(--lacquer);border-color:var(--lacquer);color:#fff}
 .chips input:focus-visible+span{outline:3px solid var(--brass);outline-offset:2px}
 .preview{font-size:14px;color:var(--muted);background:var(--bg);border-radius:10px;padding:10px 12px;border-left:3px solid #1F8A4C}
-.wa{font:800 17px var(--body);color:#fff;background:#1F8A4C;border:0;border-radius:12px;padding:14px;cursor:pointer}
+.wa{display:block;text-align:center;text-decoration:none;font:800 17px var(--body);color:#fff;background:#1F8A4C;border:0;border-radius:12px;padding:14px;cursor:pointer}
 .wa:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
 .alt{margin:0;font-size:14px;color:var(--muted);text-align:center}
 .alt a{color:var(--lacquer)}
@@ -197,7 +197,7 @@ footer{color:var(--muted);font-size:13px;text-align:center}
       <label class="fld"><span>Tu nombre <small>(opcional)</small></span>
         <input type="text" id="fNombre" autocomplete="given-name" placeholder="Ej: Laura"></label>
       <div class="preview" id="fPreview" aria-live="polite"></div>
-      <button class="wa" type="submit">Pedir turno por WhatsApp</button>
+      <a class="wa" id="waLink" href="https://wa.me/5491164672838" target="_blank" rel="noopener">Pedir turno por WhatsApp</a>
       <p class="alt">¿Preferís Instagram? Escribime a <a href="https://ig.me/m/vinchydavid" target="_blank" rel="noopener">@vinchydavid</a></p>
     </form>
     <div class="contact">
@@ -258,13 +258,11 @@ function buildMsg(){
   m+=' ¿Qué horarios tenés?';
   return m;
 }
-function updMsg(){document.getElementById('fPreview').textContent=buildMsg()}
+function updMsg(){const m=buildMsg();document.getElementById('fPreview').textContent=m;document.getElementById('waLink').href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(m)}`}
 document.getElementById('book').addEventListener('input',updMsg);
 document.getElementById('book').addEventListener('change',updMsg);
 document.getElementById('book').addEventListener('submit',e=>{
   e.preventDefault();
-  const a=document.createElement('a'); a.href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(buildMsg())}`; a.target='_blank'; a.rel='noopener';
-  document.body.appendChild(a); a.click(); a.remove();
 });
 let current=0, spinning=false;
 strips.forEach(s=>setTo(s,current,0,0)); showResult(current,false);
