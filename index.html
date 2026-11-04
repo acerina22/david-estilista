@@ -212,7 +212,6 @@ footer{color:var(--muted);font-size:13px;text-align:center}
       <div class="svc"><b>Peinados</b><em>a consultar</em><small>Ondas, recogidos y peinados para eventos.</small></div>
       <div class="svc"><b>Tratamientos</b><em>a consultar</em><small>Tratamientos capilares y reconstrucción.</small></div>
     </div>
-    <div class="pets"><svg class="pet-img" viewBox="0 0 64 80" role="img" aria-label="Caniche con moñitos"><g fill="#F4EEF0" stroke="#C9B6BC" stroke-width="1.2"><circle cx="32" cy="66" r="12"/><circle cx="22" cy="72" r="6"/><circle cx="42" cy="72" r="6"/><circle cx="32" cy="22" r="11"/><circle cx="23" cy="30" r="7"/><circle cx="41" cy="30" r="7"/><circle cx="18" cy="40" r="7"/><circle cx="46" cy="40" r="7"/><ellipse cx="32" cy="38" rx="10" ry="11"/><circle cx="32" cy="50" r="7"/></g><circle cx="28" cy="36" r="1.6" fill="#2A1418"/><circle cx="36" cy="36" r="1.6" fill="#2A1418"/><ellipse cx="32" cy="43" rx="2.4" ry="1.8" fill="#2A1418"/><g fill="#E8475D"><path d="M32 12l-7-4v8z"/><path d="M32 12l7-4v8z"/><circle cx="32" cy="12" r="2"/><path d="M18 46l-5-3v6z"/><path d="M18 46l5-3v6z"/><path d="M46 46l-5-3v6z"/><path d="M46 46l5-3v6z"/></g></svg><span><b>¿Y tu mascota?</b> Si querés que combine con vos, también la peinamos con sus moñitos para que no desentone.</span></div>
   </section>
 
   <section id="turno">
@@ -247,10 +246,6 @@ footer{color:var(--muted);font-size:13px;text-align:center}
       <a class="wa" id="waLink" href="https://wa.me/5491164672838" target="_blank" rel="noopener">Pedir turno por WhatsApp</a>
       <p class="alt">¿Preferís Instagram? Escribime a <a href="https://ig.me/m/vinchydavid" target="_blank" rel="noopener">@vinchydavid</a></p>
     </form>
-    <div class="contact">
-      <code id="phone">WhatsApp: 11 6467-2838</code>
-      <button class="copy" id="copy" type="button">Copiar número</button>
-    </div>
   </section>
 
   <footer>A domicilio en CABA: Almagro, Caballito, San Cristóbal, Abasto, Barracas, San Telmo y alrededores · Instagram: <a href="https://www.instagram.com/vinchydavid/" target="_blank" rel="noopener" style="color:var(--lacquer)">@vinchydavid</a></footer>
@@ -332,10 +327,6 @@ addEventListener('resize',()=>strips.forEach(s=>setTo(s,current,REPEAT-2,0)));
 
 const toast=document.getElementById('toast');
 function say(t){toast.textContent=t;toast.hidden=false;clearTimeout(say.t);say.t=setTimeout(()=>toast.hidden=true,2400)}
-document.getElementById('copy').addEventListener('click',()=>{
-  const t='+54 9 11 6467-2838';
-  navigator.clipboard.writeText(t).then(()=>say('Número copiado'),()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('phone'));getSelection().removeAllRanges();getSelection().addRange(r)});
-});
 </script>
 
 </body>
