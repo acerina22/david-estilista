@@ -1,6 +1,6 @@
-# David Estilista
+# Vinchy Estilista
 
-Página de David, peluquero a domicilio en CABA (Almagro, Caballito, San Cristóbal, Abasto, Barracas, San Telmo y alrededores).
+Página de Vinchy (David), peluquero a domicilio en CABA (Almagro, Caballito, San Cristóbal, Abasto, Barracas, San Telmo y alrededores).
 
 Incluye una tragamonedas de looks: tirás de la palanca, sale un peinado y el botón "Quiero este look" abre un mensaje directo a [@vinchydavid](https://www.instagram.com/vinchydavid/).
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>David Estilista · Peluquería a domicilio en CABA</title>
+<title>Vinchy Estilista · Peluquería a domicilio en CABA</title>
 <meta name="description" content="Peluquería a domicilio en CABA. Tirá de la palanca y elegí tu próximo look.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,7 +132,7 @@ footer{color:var(--muted);font-size:13px;text-align:center}
 <div class="wrap">
   <header>
     <span class="eyebrow">Peluquería a domicilio · CABA</span>
-    <h1>Vinchy David</h1>
+    <h1>Vinchy Estilista</h1>
     <p class="lede">¿No sabés qué hacerte? Tirá de la palanca y que la suerte elija tu próximo look. Todos los de la máquina son trabajos reales, y te atiendo en la comodidad de tu casa.</p>
   </header>
 
@@ -253,7 +253,7 @@ const joinY=a=>a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+' o '+a[a.length-1
 function buildMsg(){
   const n=document.getElementById('fNombre').value.trim();
   const d=vals('fDias'), f=vals('fFranja');
-  let m=`Hola David!${n?' Soy '+n+'.':''} Quiero el look "${fLook.value}". Soy de ${document.getElementById('fBarrio').value}.`;
+  let m=`Hola Vinchy!${n?' Soy '+n+'.':''} Quiero el look "${fLook.value}". Soy de ${document.getElementById('fBarrio').value}.`;
   if(d.length||f.length) m+=` Me queda bien ${d.length?joinY(d):'cualquier día'}${f.length?' '+joinY(f):''}.`;
   m+=' ¿Qué horarios tenés?';
   return m;
