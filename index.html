@@ -141,6 +141,15 @@ footer{color:var(--muted);font-size:13px;text-align:center}
 .tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .tags li{font-size:14px;padding:6px 12px;border-radius:999px;background:var(--brass-soft);color:var(--fg)}
 @media (max-width:420px){.about-head{grid-template-columns:110px 1fr}.portrait{width:110px;height:138px}}
+
+.reviews{display:flex;flex-direction:column;gap:12px}
+.reviews>p{margin:0;max-width:60ch}
+.reviews h2{margin:2px 0 0}
+.fld textarea{font:16px var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:420px){.row2{grid-template-columns:1fr}}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--lacquer);flex:none}
 </style>
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -202,6 +211,23 @@ footer{color:var(--muted);font-size:13px;text-align:center}
       <li>Especialista en color · L'Oréal Professionnel</li>
       <li>Balayage y babylights · Wella Professionals</li>
     </ul>
+  </section>
+
+  <section class="reviews" aria-labelledby="resenas">
+    <span class="eyebrow">Reseñas</span>
+    <h2 id="resenas">¿Ya te atendí?</h2>
+    <p>Trabajé más de 15 años en salones, y mis clientas me seguían de un lugar a otro, pero nunca junté reseñas. Ahora que atiendo por mi cuenta, empiezo a sumarlas acá. Si alguna vez te corté o te hice color, contame qué te pareció.</p>
+    <form class="book" id="rev">
+      <label class="fld"><span>Tu reseña</span>
+        <textarea id="rText" rows="4" placeholder="Ej: Hace años que me atiende, siempre me asesora y me deja el color como lo quiero."></textarea></label>
+      <div class="row2">
+        <label class="fld"><span>Tu nombre</span><input type="text" id="rNombre" autocomplete="given-name" placeholder="Ej: Laura"></label>
+        <label class="fld"><span>Barrio</span><input type="text" id="rBarrio" placeholder="Ej: Caballito"></label>
+      </div>
+      <label class="check"><input type="checkbox" id="rOk" checked><span>Podés publicarla en tu página con mi nombre y barrio</span></label>
+      <a class="wa" id="revLink" href="https://wa.me/5491164672838" target="_blank" rel="noopener">Enviar mi reseña por WhatsApp</a>
+      <p class="alt">Las voy sumando a la página a medida que me llegan.</p>
+    </form>
   </section>
 
   <section>
@@ -306,6 +332,18 @@ document.getElementById('book').addEventListener('change',updMsg);
 document.getElementById('book').addEventListener('submit',e=>{
   e.preventDefault();
 });
+
+function revMsg(){
+  const t=document.getElementById('rText').value.trim(), n=document.getElementById('rNombre').value.trim(), b=document.getElementById('rBarrio').value.trim();
+  let m='Hola Vinchy! Te dejo mi reseña: '+(t?'"'+t+'"':'');
+  if(n||b) m+=' — '+[n,b].filter(Boolean).join(', ');
+  m+= document.getElementById('rOk').checked?'. Podés publicarla en tu página.':'. Es solo para vos, no la publiques.';
+  document.getElementById('revLink').href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(m)}`;
+}
+document.getElementById('rev').addEventListener('input',revMsg);
+document.getElementById('rev').addEventListener('change',revMsg);
+document.getElementById('rev').addEventListener('submit',e=>e.preventDefault());
+revMsg();
 let current=0, spinning=false;
 strips.forEach(s=>setTo(s,current,0,0)); showResult(current,false);
 
