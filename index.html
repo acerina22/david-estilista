@@ -85,7 +85,7 @@ h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,11vw,64px);li
 
 h2{font-family:var(--display);font-weight:400;font-size:32px;line-height:1.05;margin:0 0 14px}
 .services{display:flex;flex-direction:column}
-.svc{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.svc{display:grid;grid-template-columns:1fr;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
 .svc b{font-size:17px}
 .svc small{grid-column:1/-1;color:var(--muted);font-size:14px}
 .svc em{font-style:normal;font-family:var(--mono);font-size:13px;color:var(--lacquer);align-self:center}
@@ -156,6 +156,9 @@ footer{color:var(--muted);font-size:13px;text-align:center}
 .stars label{font-size:38px;line-height:1;color:var(--line);cursor:pointer;transition:color .15s}
 .stars input:checked~label,.stars label:hover,.stars label:hover~label{color:var(--brass)}
 .stars input:focus-visible+label{outline:3px solid var(--brass);outline-offset:2px;border-radius:6px}
+
+.who{margin:2px 0 0;font-weight:700;color:var(--lacquer);font-size:15px}
+.price-note{margin:14px 0 0;font-size:14px;color:var(--muted);max-width:60ch}
 </style>
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -166,6 +169,7 @@ footer{color:var(--muted);font-size:13px;text-align:center}
   <header>
     <span class="eyebrow">Peluquería a domicilio · CABA</span>
     <h1>Vinchy Estilista</h1>
+    <p class="who">David Gauna · Colorista · +15 años de oficio</p>
     <p class="lede">¿No sabés qué hacerte? Tirá de la palanca y que la suerte elija tu próximo look. Todos los de la máquina son trabajos reales, y te atiendo en la comodidad de tu casa.</p>
   </header>
 
@@ -199,6 +203,7 @@ footer{color:var(--muted);font-size:13px;text-align:center}
         <select id="fLook"></select></label>
       <label class="fld"><span>Barrio</span>
         <select id="fBarrio">
+          <option value="" selected disabled>Elegí tu barrio</option>
           <option>Almagro</option><option>Caballito</option><option>San Cristóbal</option><option>Abasto</option>
           <option>Barracas</option><option>San Telmo</option><option>Otro barrio de CABA</option>
         </select></label>
@@ -255,11 +260,12 @@ footer{color:var(--muted);font-size:13px;text-align:center}
   <section>
     <h2>Servicios</h2>
     <div class="services">
-      <div class="svc"><b>Corte</b><em>a consultar</em><small>Dama y caballero. Te asesoro según tu forma de cara y cómo te peinás en el día a día.</small></div>
-      <div class="svc"><b>Color</b><em>a consultar</em><small>Colorimetría, balayage, babylights, corrección de color, matización y colores fantasía.</small></div>
-      <div class="svc"><b>Peinados</b><em>a consultar</em><small>Ondas, recogidos y peinados para eventos.</small></div>
-      <div class="svc"><b>Tratamientos</b><em>a consultar</em><small>Tratamientos capilares y reconstrucción.</small></div>
+      <div class="svc"><b>Corte</b><small>Dama y caballero. Te asesoro según tu forma de cara y cómo te peinás en el día a día.</small></div>
+      <div class="svc"><b>Color</b><small>Colorimetría, balayage, babylights, corrección de color, matización y colores fantasía.</small></div>
+      <div class="svc"><b>Peinados</b><small>Ondas, recogidos y peinados para eventos.</small></div>
+      <div class="svc"><b>Tratamientos</b><small>Tratamientos capilares y reconstrucción.</small></div>
     </div>
+    <p class="price-note">Cada trabajo es personalizado: el precio depende del servicio, el largo y la zona. Consultame por WhatsApp sin compromiso.</p>
   </section>
 
   <section class="reviews" aria-labelledby="resenas">
@@ -328,7 +334,7 @@ const joinY=a=>a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+' o '+a[a.length-1
 function buildMsg(){
   const n=document.getElementById('fNombre').value.trim();
   const d=vals('fDias'), f=vals('fFranja');
-  let m=`Hola Vinchy!${n?' Soy '+n+'.':''} Quiero el look "${fLook.value}". Soy de ${document.getElementById('fBarrio').value}.`;
+  let m=`Hola Vinchy!${n?' Soy '+n+'.':''} Quiero el look "${fLook.value}". ${document.getElementById('fBarrio').value?'Soy de '+document.getElementById('fBarrio').value+'.':''}`;
   if(d.length||f.length) m+=` Me queda bien ${d.length?joinY(d):'cualquier día'}${f.length?' '+joinY(f):''}.`;
   m+=' ¿Qué horarios tenés?';
   return m;
@@ -350,7 +356,7 @@ document.getElementById('rev').addEventListener('input',revMsg);
 document.getElementById('rev').addEventListener('change',revMsg);
 document.getElementById('rev').addEventListener('submit',e=>e.preventDefault());
 revMsg();
-let current=0, spinning=false;
+let current=Math.max(0,LOOKS.findIndex(l=>l.name==='Melena platinada')), spinning=false;
 strips.forEach(s=>setTo(s,current,0,0)); showResult(current,false);
 
 function spin(){
